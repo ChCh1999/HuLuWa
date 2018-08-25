@@ -2,7 +2,7 @@
 #include "ArcherTowerLv1.h"
 #include "bullet.h"
 
-bool ArcherTower_1::init()
+bool ArcherTowerLv1::init()
 {
 	if (!Sprite::init())
 	{
@@ -19,7 +19,16 @@ bool ArcherTower_1::init()
 	return true;
 }
 
-void attack(float dt)
+void ArcherTowerLv1::initTower()
+{
+	TowerBase = Sprite::create("TowerBase.png");
+	Shooter = Sprite::create("Shooter.png");
+	Shooter->setPosition(Vec2(TowerBase->getContentSize().width / 2, TowerBase->getContentSize().height / 2 + 30));
+	TowerBase->addChild(Shooter);
+
+	this->addChild(TowerBase);
+}
+void ArcherTowerLv1::attack(float dt)
 {
 	BaseTower * ArcherTower = new BaseTower;
 	ArcherTower->searchNearestEnemy();

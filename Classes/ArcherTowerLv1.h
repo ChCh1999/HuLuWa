@@ -7,16 +7,17 @@
 
 USING_NS_CC;
 
-class ArcherTower_1 : public BaseTower
+class ArcherTowerLv1 : public BaseTower
 {
 public:
 	bool init();
+	void initTower();
 	virtual void showUpdateMenu();
+	virtual void attack(float dt);
 protected:
 	Sprite * TowerBase;
 	Sprite * Shooter;
 	int shootTag;
-	virtual void attack(float dt);
 };
 
 #endif // !_ARCHER_TOWER_H_
