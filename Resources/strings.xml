@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plist version="1.0">
+<dict>
+	<key>start</key>
+	<string>开始游戏</string>
+  <key>mine</key>
+  <string>我的第一个游戏</string>
+</dict>
+</plist>
