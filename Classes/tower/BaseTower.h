@@ -24,12 +24,12 @@ public:
 	bool isUpdateMenuShown;			// 塔的升级信息栏是否打开
 	TowerType towerType;			// 塔的类型
 	int towerLevel;					// 塔的等级
-	double towerScope;					// 塔的攻击范围
+	double towerScope;				// 塔的攻击范围
 	int towerAttackPower;			// 塔的攻击力
 	int towerUpdateMoney;			// 塔的升级所用金钱
 	int towerBuildMoney;			// 塔的建造所用金钱
 	void searchNearestEnemy();		// 寻找周围的敌人
-	int * getEnemyArray(int * ee);
+	//int * getEnemyArray(int * ee);
 	int * EnemyArray;
 	Enemy * nearestEnemy;			//确定最近的敌人
 	//virtual void showUpdateMenu();	//展示升级菜单

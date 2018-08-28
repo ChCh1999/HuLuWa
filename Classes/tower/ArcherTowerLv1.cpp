@@ -1,5 +1,7 @@
 
 #include "ArcherTowerLv1.h"
+#include "bullet/Bullet.h"
+#include"GameScene.h"
 
 bool ArcherTowerLv1::init()
 {
@@ -8,7 +10,7 @@ bool ArcherTowerLv1::init()
 		return false;
 	}
 	//ÓÎÏ·Êý¾Ý
-	towerType = ARCHER_1;
+	//towerType = ARCHER_1;
 	towerLevel = 1;
 	towerScope = 160.0;
 	towerAttackPower = 30;

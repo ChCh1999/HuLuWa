@@ -1,9 +1,11 @@
-#pragma once
+#ifndef _BULLET_H_
+#define _BULLET_H_
+
 #include"cocos2d.h"
 #include"Enemy.h"
 USING_NS_CC;
 
-class Bullet:public Sprite {
+class Bullet :public Sprite {
 public:
 	Bullet();
 
@@ -21,3 +23,5 @@ protected:
 	int tagOfTower;
 };
 
+
+#endif // !_BULLET_H_

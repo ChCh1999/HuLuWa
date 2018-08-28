@@ -1,8 +1,4 @@
-#pragma once
 #include "BaseTower.h"
-#include "bullet/Bullet.h"
-#include "Enemy.h"
-
 
 BaseTower::BaseTower():isUpdateMenuShown(false){}
 
@@ -25,7 +21,6 @@ void BaseTower::sellTower()
 	this->setVisible(false);
 	//this->removeChild();
 }
-
 
 void BaseTower::searchNearestEnemy()
 {

@@ -1,25 +1,17 @@
 #pragma once
-
-#ifndef _ENEMY_H_
-#define _ENEMY_H_
-
 #include "cocos2d.h"
-class Enemy : public cocos2d::Sprite
+class Enemyspider : public cocos2d::Sprite
 {
 
 	cocos2d::Sprite* spriteaction;
 
-
+	float HP = 120;
 	float Speed = 50;
 	cocos2d::Scene* rScene;
 
 public:
-	float HP = 100;
-	static int num1;
-	Enemy();
-	void plus();
-	int getNum();
-	bool createEnemy();
+	Enemyspider();
+	bool createEnemyspider();
 	virtual void rightmove();
 	virtual void leftmove();
 	virtual void upmove();
@@ -44,5 +36,3 @@ public:
 
 	void updatedeath(float dt);
 };
-
-#endif // !_ENEMY_H_
