@@ -1,8 +1,10 @@
+
 #ifndef _BASE_TOWER_H_
 #define _BASE_TOWER_H_
 
 #include "cocos2d.h"
-
+#include "Enemy.h"
+#include "GameScene.h"
 USING_NS_CC;
 
 typedef enum {
@@ -27,11 +29,11 @@ public:
 	int towerUpdateMoney;			// 塔的升级所用金钱
 	int towerBuildMoney;			// 塔的建造所用金钱
 	void searchNearestEnemy();		// 寻找周围的敌人
-protected:
+	int * getEnemyArray(int * ee);
+	int * EnemyArray;
 	Enemy * nearestEnemy;			//确定最近的敌人
-	virtual void showUpdateMenu();	//展示升级菜单
-	virtual void hideUpdateMenu();	//隐藏升级菜单
-	virtual void attack(float dt);	//攻击！
+	//virtual void showUpdateMenu();	//展示升级菜单
+	//virtual void hideUpdateMenu();	//隐藏升级菜单
 };
 
 #endif // !_BASE_TOWER_H_

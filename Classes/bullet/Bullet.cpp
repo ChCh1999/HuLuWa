@@ -13,7 +13,7 @@ int Bullet::Shoot(int tagoftower, int tagofenemy) {//在父对象获取到敌人后攻击 参
 												   //获取值
 	auto Parent = rScene->getChildByTag(tagoftower);//防御塔
 													//初始化
-	this->setPosition(Parent->getPosition());
+	this->setPosition(Parent->getPosition().x, Parent->getPosition().y+50);
 	this->tagOfEnemy = tagofenemy;
 
 	auto enemy = rScene->getChildByTag(tagofenemy);
@@ -25,18 +25,15 @@ int Bullet::Shoot(int tagoftower, int tagofenemy) {//在父对象获取到敌人后攻击 参
 	return 0;
 }
 
-int hite = 0;
 void Bullet::Hit(float dt) {//保护函数 抓取敌人 调整弹道 判断碰撞
 
 	Scene* rScene = CCDirector::getInstance()->getRunningScene();
-	auto enemy = rScene->getChildByTag(tagOfEnemy);
+	Enemy * enemy = dynamic_cast<Enemy *>(rScene->getChildByTag(tagOfEnemy));
 	auto rectE = enemy->boundingBox();
 	auto rectB = this->boundingBox();
 
-
-
 	if (rectB.intersectsRect(rectE)) {
-		hite++;
+	
 		rScene->removeChild(this);
 		this->unschedule(schedule_selector(Bullet::Hit));
 

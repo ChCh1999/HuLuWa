@@ -1,6 +1,5 @@
-#include "BaseTower.h"
+
 #include "ArcherTowerLv1.h"
-#include "bullet.h"
 
 bool ArcherTowerLv1::init()
 {
@@ -18,11 +17,14 @@ bool ArcherTowerLv1::init()
 	isUpdateMenuShown = false;
 	return true;
 }
-
+int * ArcherTowerLv1::getEnemyArray(int * ee) {
+	return ee;
+}
 void ArcherTowerLv1::initTower()
 {
 	TowerBase = Sprite::create("TowerBase.png");
 	Shooter = Sprite::create("Shooter.png");
+	Shooter->setRotation(-3);
 	Shooter->setPosition(Vec2(TowerBase->getContentSize().width / 2, TowerBase->getContentSize().height / 2 + 30));
 	TowerBase->addChild(Shooter);
 
@@ -30,11 +32,11 @@ void ArcherTowerLv1::initTower()
 }
 void ArcherTowerLv1::attack(float dt)
 {
-	BaseTower * ArcherTower = new BaseTower;
+	ArcherTowerLv1 * ArcherTower = new ArcherTowerLv1;
 	ArcherTower->searchNearestEnemy();
-	if (nearestEnemy != NULL && nearestEnemy.HP > 0)
+	if (nearestEnemy != NULL && nearestEnemy->HP > 0)
 	{
-		int nTag = nearestEnemy.getTag();
+		int nTag = nearestEnemy->getTag();
 		auto aBullet = new Bullet;
 		Scene * scene = CCDirector::getInstance()->getRunningScene();
 		scene->addChild(aBullet);
