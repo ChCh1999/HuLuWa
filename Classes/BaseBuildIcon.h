@@ -1,12 +1,12 @@
-#ifndef _BASE_MENU_ICON_H_
-#define _BASE_MENU_ICON_H_
+#ifndef _BASE_BUILD_ICON_H_
+#define _BASE_BUILD_ICON_H_
 
 #include "BaseTower.h"
 #include "cocos2d.h"
 
 USING_NS_CC;
 
-class BaseMenuIcon : public Sprite
+class BaseBuildIcon : public Sprite
 {
 public:
 	virtual void initIcon(TowerType towerType, int money);
@@ -27,6 +27,6 @@ public:
 	int money;
 	/*void update(float dt);*/
 	TowerType towerType;
-	CREATE_FUNC(BaseMenuIcon);
+	CREATE_FUNC(BaseBuildIcon);
 };
 #endif // !_UPDATE_MENU_ICON_H_

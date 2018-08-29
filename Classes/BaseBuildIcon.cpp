@@ -1,26 +1,26 @@
-#include "BaseMenuIcon.h"
+#include "BaseBuildIcon.h"
 #include "cocos2d.h"
 
 USING_NS_CC;
 
 
-void BaseMenuIcon::initIcon(TowerType towerType, int money)		//传入相应塔的种类
+void BaseBuildIcon::initIcon(TowerType towerType, int money)		//传入相应塔的种类
 {
 	isSelected = false;
 	int nTag = (int)towerType;
 	switch (nTag)													//根据对应塔的种类输入对应的升级图标
 	{
 	case 0:
-		BaseIcon = Sprite::create("UpdateIcon1.png");
+		BaseIcon = Sprite::create("TowerLeaf1.png");
 		break;
 	case 2:
-		BaseIcon = Sprite::create("UpdateIcon2.png");
+		BaseIcon = Sprite::create("TowerLeaf2.png");
 		break;
 	case 4:
-		BaseIcon = Sprite::create("UpdateIcon4.png");
+		BaseIcon = Sprite::create("TowerLeaf4.png");
 		break;
 	case 6:
-		BaseIcon = Sprite::create("UpdateIcon5.png");
+		BaseIcon = Sprite::create("TowerLeaf5.png");
 		break;
 	default:
 		break;
@@ -34,7 +34,7 @@ void BaseMenuIcon::initIcon(TowerType towerType, int money)		//传入相应塔的种类
 
 	PriceIcon = Sprite::create("MoneyIcon.png");
 	PriceIcon->setScale(0.87f);
-	PriceIcon->setPosition(Vec2(PriceBase->getContentSize().width/2 - 27,PriceBase->getContentSize().height/2 + 2));
+	PriceIcon->setPosition(Vec2(PriceBase->getContentSize().width / 2 - 27, PriceBase->getContentSize().height / 2 + 2));
 	PriceBase->addChild(PriceIcon);
 
 	PriceLabel = Label::createWithTTF(String::createWithFormat("%d", money)->getCString(), "fonts/consola.ttf", 35);
@@ -49,19 +49,19 @@ void BaseMenuIcon::initIcon(TowerType towerType, int money)		//传入相应塔的种类
 	OKIcon->setVisible(false);
 	PriceBase->addChild(OKIcon);
 
-	BaseMenuIcon::towerType = towerType;
-	BaseMenuIcon::money = money;
+	BaseBuildIcon::towerType = towerType;
+	BaseBuildIcon::money = money;
 
 	this->scheduleUpdate();
 }
 
-void BaseMenuIcon::setUpdateMoney(int money)
+void BaseBuildIcon::setUpdateMoney(int money)
 {
-	BaseMenuIcon::money = money;
+	BaseBuildIcon::money = money;
 	PriceLabel->setString(String::createWithFormat("%d", money)->getCString());
 }
 
-void BaseMenuIcon::setEnoughMoney()
+void BaseBuildIcon::setEnoughMoney()
 {
 	isAble = true;
 	PriceLabel->setColor(Color3B(255, 255, 0));
@@ -69,42 +69,42 @@ void BaseMenuIcon::setEnoughMoney()
 	switch (nTag)													//根据对应塔的种类输入对应的升级图标
 	{
 	case 0:
-		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("UpdateIcon1.png"));
+		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("TowerLeaf1.png"));
 		break;
 	case 2:
-		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("UpdateIcon2.png"));
+		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("TowerLeaf2.png"));
 		break;
 	case 4:
-		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("UpdateIcon4.png"));
+		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("TowerLeaf4.png"));
 		break;
 	case 6:
-		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("UpdateIcon5.png"));
+		BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("TowerLeaf5.png"));
 		break;
 	default:
 		break;
 	}
 }
 
-void BaseMenuIcon::setNotEnoughMoney()
+void BaseBuildIcon::setNotEnoughMoney()
 {
 	isAble = false;
 	PriceLabel->setColor(Color3B(102, 102, 102));
 	BaseIcon->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("CannotBeSelected.png"));
 }
 
-void BaseMenuIcon::setSelected()
+void BaseBuildIcon::setSelected()
 {
 	isSelected = true;
 	OKIcon->setVisible(true);
 }
 
-void BaseMenuIcon::setNotSelected()
+void BaseBuildIcon::setNotSelected()
 {
 	isSelected = false;
 	OKIcon->setVisible(false);
 }
 
-//void BaseMenuIcon::update(float dt)
+//void BaseBuildIcon::update(float dt)
 //{
 //	if (money <= MONEY)								//MONEY为玩家所拥有的总钱数
 //		setEnoughMoney();
