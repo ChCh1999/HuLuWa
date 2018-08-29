@@ -1,8 +1,9 @@
 
 #include"Enemybat.h"
-
+#include"GameScene.h"
 USING_NS_CC;
 
+extern int HealthOfScene1;
 Enemybat::Enemybat() {
 	 rScene = Director::getInstance()->getRunningScene();
 	 
@@ -50,7 +51,7 @@ void Enemybat::leftmove()
 		SpriteFrame *spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(frameName->getCString());
 		animation->addSpriteFrame(spriteFrame);
 	}
-	Vec2 mytry =this->getPosition();
+
 	animation->setDelayPerUnit(0.15f);           //设置两个帧播放时间
 	animation->setRestoreOriginalFrame(true);    //动画执行后还原初始状态
 
@@ -174,6 +175,11 @@ void Enemybat::update7(float dt)
 	{
 		spriteaction->stopAllActions();
 		spriteaction->setVisible(false);
+		if (HP >= 0) { 
+			HealthOfScene1--;
+			CCString * healths = CCString::createWithFormat("%d", HealthOfScene1);
+			dynamic_cast<Label *>(rScene->getChildByName("HealthBar"))->setString(healths->getCString());
+		};
 	}
 }
 void Enemybat::move1() 
@@ -237,3 +243,4 @@ void Enemybat::move7()
 	Enemybat::leftmove();
 	this->schedule(schedule_selector(Enemybat::update7), 1.0f / 10);
 }
+

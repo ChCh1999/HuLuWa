@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
-class Enemytree : public cocos2d::Sprite
+#include "Enemy.h"
+class Enemytree : public  Enemy
 {
 
 	cocos2d::Sprite* spriteaction;

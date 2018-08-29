@@ -1,16 +1,16 @@
 #pragma once
 #include "cocos2d.h"
-class Enemybat : public cocos2d::Sprite
+#include "Enemy.h"
+
+class Enemybat : public Enemy
 {
 	
 	cocos2d::Sprite* spriteaction;
 	
-	
-	float Speed = 80;
-	cocos2d::Scene* rScene;
-	
-public:
 	float HP = 100;
+	float Speed = 800;
+	cocos2d::Scene* rScene;
+public:
 	Enemybat();
 	bool createEnemybat();
 	virtual void rightmove();
@@ -18,7 +18,7 @@ public:
 	virtual void upmove();
 	virtual void downmove();
 	virtual void move();
-
+;
 	void update1(float dt);
 	void update2(float dt);
 	void update3(float dt);

@@ -4,6 +4,7 @@
 USING_NS_CC;
 
 int * EnemyArray;
+int HealthOfScene1 = 20;
 
 Scene * GameScene::createScene() {
 	return GameScene::create();
@@ -39,9 +40,10 @@ bool GameScene::init() {
 	healthbg->setPosition(130,730);
 	healthbg->setScaleX(0.85);
 	this->addChild(healthbg, 1);
-	CCString * healths = CCString::createWithFormat("%d", this->health);
+	CCString * healths = CCString::createWithFormat("%d", HealthOfScene1);
 	auto healthlabel = Label::create(healths->getCString(), "arial.ttf", 20);
 	healthlabel->setPosition(130, 730);
+	healthlabel -> setName("HealthBar");
 	this->addChild(healthlabel, 2);
 
 	//½ðÇ®Ìõ
@@ -195,10 +197,10 @@ void GameScene::updatenumspider(float dt)
 	i++;
 }
 int GameScene::hurt() {
-	this->health--;
-	CCString * healths = CCString::createWithFormat("%d", this->health);
+	HealthOfScene1--;
+	CCString * healths = CCString::createWithFormat("%d", HealthOfScene1);
 	auto healthlabel = Label::create(healths->getCString(), "arial.ttf", 16);
 	healthlabel->setPosition(130, 730);
 	this->addChild(healthlabel, 2);
-	return this->health;
+	return HealthOfScene1;
 }

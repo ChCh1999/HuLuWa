@@ -1,7 +1,7 @@
 #pragma once
 #include"cocos2d.h"
 #include"Enemy.h"
-#include"bullet\Bullet.h"
+#include"Bullet.h"
 #include"ArcherTowerLv1.h"
 #include"Enemybat.h"
 #include"Enemyspider.h"
@@ -14,7 +14,6 @@ class GameScene: public cocos2d::Scene
 public:
 	static cocos2d::Scene* createScene();
 	virtual bool init();
-	int health = 20;
 	int money = 200;
 	
 	
