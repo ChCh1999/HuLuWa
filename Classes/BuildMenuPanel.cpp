@@ -9,8 +9,6 @@ void BuildMenuPanel::initPanel()
 	PanelSprite->setScale(1.0f);
 	PanelSprite->setPosition(Vec2(0, 0));
 	this->addChild(PanelSprite);
-
-	
 }
 
 void BuildMenuPanel::addTower(TowerType towerType, Vec2 position)
@@ -94,7 +92,7 @@ bool BuildMenuPanel::onTouchBegan(Touch *touch, Event *event)
 {
 	auto target = static_cast<BaseBuildIcon *>(event->getCurrentTarget());
 
-	Point locationInNode = target->convertTouchToNodeSpace(touch);
+	Vec2 locationInNode = target->convertTouchToNodeSpace(touch);
 	Size size = target->BaseIcon->getContentSize();
 	Rect rect = Rect(0 - size.width / 2, 0 - size.height / 2, size.width, size.height);
 	if (rect.containsPoint(locationInNode))

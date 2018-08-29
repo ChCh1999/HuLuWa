@@ -26,6 +26,11 @@ void UpdatePanel::initUpdatePanel()
 	addChild(sellIcon);
 
 	CouldUpdate = true;
+
+	Lock = Sprite::createWithSpriteFrameName("CannotBeSelected.png");
+	Lock->setPosition(Point(0, PanelSprite->getContentSize().height / 2));
+	addChild(Lock);
+	Lock->setVisible(false);
 }
 
 void UpdatePanel::inAnimation()
@@ -37,14 +42,11 @@ void UpdatePanel::inAnimation()
 
 void UpdatePanel::addIcons()
 {
-	thisLvlCircle = Circle::create();
-	nextLvlCircle = Circle::create();
+	thisLvCircle = Circle::create();
 
-	thisLvlCircle->setScale(tower->getScope() / 160.0f);
-	addChild(thisLvlCircle, -1);
-	nextLvlCircle->setScale((tower->getScope() + 20) / 160.0f);
-	addChild(nextLvlCircle, -1);
-	nextLvlCircle->setVisible(false);
+	thisLvCircle->setScale(tower->towerScope);
+	addChild(thisLvCircle);
+
 	sellIcon->setVisible(true);
 
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -56,11 +58,49 @@ void UpdatePanel::addIcons()
 	if (CouldUpdate) {
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener->clone(), updateIcon);
 		updateIcon->setVisible(true);
-		updateIcon->setUpdateMoney(tower->getUpdateMoney());
+		updateIcon->setUpdateMoney(tower->towerUpdateMoney);
 	}
 	else {
-		lock->setVisible(true);
+		Lock->setVisible(true);
 	}
+}
 
+bool UpdatePanel::onTouchBegan(Touch *touch, Event *event)
+{
+	auto target = static_cast<BaseMenuIcon *>(event->getCurrentTarget());
+	Vec2 locationInNode = target->convertTouchToNodeSpace(touch);
+	Size size = target->BaseIcon->getContentSize();
+	Rect rect = Rect(0 - size.width / 2, 0 - size.height / 2, size.width, size.height);
+	if (rect.containsPoint(locationInNode))
+	{
+		if (target->isSelected)//如果已经选中
+		{
+			if (target->isAble)//如果钱够用
+			{
+				switch (target->getTag())
+				{
+				case(1)://升级
+					// 此行为为扣除对应金钱
+					tower->UpdateTower();		//执行升级塔的操作
+					break;
+				case(2)://售出
+					// 此行为为增加对应金钱
+					tower->RemoveTower();			//执行售卖塔的操作
+					break;
+				}
+				this->setVisible(false);
+				isBuilt = true;
+			}
+		}
+		return true;
+	}
+	return false;
+}
 
+void UpdatePanel::onTouchEnded(Touch* touch, Event* event)
+{
+	if (isBuilt)
+	{
+		removeFromParent();
+	}
 }

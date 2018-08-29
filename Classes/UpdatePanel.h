@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "BaseMenuIcon.h"
 #include "SellIcon.h"
+#include "Circle.h"
 #include "BaseTower.h"
 
 USING_NS_CC;
@@ -14,13 +15,19 @@ public:
 	void initUpdatePanel();
 	void inAnimation();
 	void addIcons();
+	bool onTouchBegan(Touch *touch, Event *event);
+	void onTouchEnded(Touch* touch, Event* event);
 
-	Circle* thisLvlCircle;
-	Circle* nextLvlCircle;
+	BaseTower * tower;
+	Circle * thisLvCircle;
 	Sprite * PanelSprite;
+	Sprite * Lock;
 	BaseMenuIcon * updateIcon;
 	SellIcon * sellIcon;
+
 	bool CouldUpdate;
+	bool isBuilt;
+
 	CREATE_FUNC(UpdatePanel);
 };
 
