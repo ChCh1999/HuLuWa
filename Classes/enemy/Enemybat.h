@@ -5,11 +5,12 @@ class Enemybat : public cocos2d::Sprite
 	
 	cocos2d::Sprite* spriteaction;
 	
-	float HP = 100;
+	
 	float Speed = 80;
 	cocos2d::Scene* rScene;
 	
 public:
+	float HP = 100;
 	Enemybat();
 	bool createEnemybat();
 	virtual void rightmove();

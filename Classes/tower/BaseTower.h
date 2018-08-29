@@ -3,8 +3,8 @@
 #define _BASE_TOWER_H_
 
 #include "cocos2d.h"
-#include "Enemy.h"
-#include "GameScene.h"
+
+
 USING_NS_CC;
 
 typedef enum {
@@ -30,8 +30,7 @@ public:
 	int towerBuildMoney;			// 塔的建造所用金钱
 	void searchNearestEnemy();		// 寻找周围的敌人
 	//int * getEnemyArray(int * ee);
-	int * EnemyArray;
-	Enemy * nearestEnemy;			//确定最近的敌人
+	Node * nearestEnemy;			//确定最近的敌人
 	//virtual void showUpdateMenu();	//展示升级菜单
 	//virtual void hideUpdateMenu();	//隐藏升级菜单
 };

@@ -3,7 +3,6 @@
 #define _ARCHER_TOWER_H_
 #include "cocos2d.h"
 #include "BaseTower.h"
-
 USING_NS_CC;
 
 class ArcherTowerLv1 : public BaseTower
@@ -12,7 +11,6 @@ public:
 	bool init();
 	void initTower();
 	void attack(float dt);
-	int *getEnemyArray(int * ee);
 	//virtual void showUpdateMenu();
 	//virtual void attack(float dt);
 protected:

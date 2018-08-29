@@ -1,5 +1,7 @@
 #include "BaseTower.h"
-
+#include "GameScene.h"
+#include "Enemy.h"
+extern int * EnemyArray;
 BaseTower::BaseTower():isUpdateMenuShown(false){}
 
 BaseTower::~BaseTower() {}
@@ -24,15 +26,17 @@ void BaseTower::sellTower()
 
 void BaseTower::searchNearestEnemy()
 {
-	Enemy * EnemyTemp, *Enemy;
+	Node * EnemyTemp, *Enemy;
+	Enemy = NULL;
 	Scene* rScene = CCDirector::getInstance()->getRunningScene();
-	double shorterDistance = towerScope;
+	double shorterDistance = 2000;
 	Vec2 towerPosition = this->getPosition();
-	for (int i = 0; i <=100; i++)
+	for (int i = 0; i <100; i++)
 	{
 		if(EnemyArray[i]!=0){
-			auto temp = EnemyTemp->getParent()->getChildByTag(EnemyArray[i]);
-			//EnemyTemp = dynamic_cast<Enemy *>(temp);
+			auto temp = rScene->getChildByTag(EnemyArray[i]);
+			
+			EnemyTemp = temp;
 		Vec2 enemyPosition = EnemyTemp->getPosition();
 		double distance = towerPosition.getDistance(enemyPosition);
 		if (distance < shorterDistance )
@@ -42,7 +46,9 @@ void BaseTower::searchNearestEnemy()
 		}
 		}
 	}
+
 	nearestEnemy = Enemy;
+
 }
 
 //void showUpdateMenu()

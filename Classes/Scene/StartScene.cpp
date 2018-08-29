@@ -1,7 +1,6 @@
 
 
 #include "StartScene.h"
-#include "FirstScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 USING_NS_CC;
@@ -59,7 +58,6 @@ bool StartScene::init()
 	// 3. add your codes below..
 	// add a label shows "Hello World"
 	// create and initialize a label
-
 
 
 	auto bgimg = Sprite::create("startbg.png");

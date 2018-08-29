@@ -3,6 +3,8 @@
 
 USING_NS_CC;
 
+int * EnemyArray;
+
 Scene * GameScene::createScene() {
 	return GameScene::create();
 }
@@ -12,6 +14,7 @@ bool GameScene::init() {
 	{
 		return false;
 	}
+	EnemyArray = Enemies;
 	Size winSize = Director::getInstance()->getWinSize();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
@@ -34,43 +37,46 @@ bool GameScene::init() {
 	this->addChild(healthicon, 1);
 	Sprite * healthbg = Sprite::create("hbg.png");
 	healthbg->setPosition(130,730);
+	healthbg->setScaleX(0.85);
 	this->addChild(healthbg, 1);
 	CCString * healths = CCString::createWithFormat("%d", this->health);
-	auto healthlabel = Label::create(healths->getCString(), "arial.ttf", 16);
+	auto healthlabel = Label::create(healths->getCString(), "arial.ttf", 20);
 	healthlabel->setPosition(130, 730);
 	this->addChild(healthlabel, 2);
 
 	//金钱条
 	Sprite * moneyicon = Sprite::create("money.png");
-	moneyicon->setPosition(220,730);
+	moneyicon->setPosition(210,730);
+	moneyicon->setScale(1.3);
 	this->addChild(moneyicon, 1);
 	Sprite *moneybg = Sprite::create("hbg.png");
-	moneybg->setPosition(300,730);
+	moneybg->setPosition(290,730);
+	moneybg->setScaleX(0.85);
 	this->addChild(moneybg);  
 	CCString * moneys = CCString::createWithFormat("%d", this->money);
-	auto moneylabel = Label::create(moneys->getCString(), "arial.ttf", 16);
-	moneylabel->setPosition(300, 730);
+	auto moneylabel = Label::create(moneys->getCString(), "arial.ttf", 20);
+	moneylabel->setPosition(290, 730);
 	this->addChild(moneylabel, 2);
 
-	////塔点
-	//MenuItemImage* setTower1=MenuItemImage::create("SetPoint.png", "SetPoint.png",
-	//	CC_CALLBACK_0(GameScene::SetTower1,this));
-	//MenuItemImage* setTower2 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
-	//	CC_CALLBACK_0(GameScene::SetTower2, this));
-	//MenuItemImage* setTower3 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
-	//	CC_CALLBACK_0(GameScene::SetTower3, this));
-	//MenuItemImage* setTower4 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
-	//	CC_CALLBACK_0(GameScene::SetTower4, this));
-	//MenuItemImage* setTower5 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
-	//	CC_CALLBACK_0(GameScene::SetTower5, this));
-	//setTower1->setPosition(290, 330);
-	//setTower2->setPosition(390, 510);
-	//setTower3->setPosition(450, 250);
-	//setTower4->setPosition(780, 250);
-	//setTower5->setPosition(780, 510);
-	//Menu * BuildTower = Menu::create(setTower1, setTower2, setTower3, setTower4,setTower5,NULL);
-	//BuildTower->setPosition(0,0);
-	//this->addChild(BuildTower,1);
+	//塔点
+	MenuItemImage* setTower1=MenuItemImage::create("SetPoint.png", "SetPoint.png",
+		CC_CALLBACK_0(GameScene::SetTower1,this));
+	MenuItemImage* setTower2 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
+		CC_CALLBACK_0(GameScene::SetTower2, this));
+	MenuItemImage* setTower3 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
+		CC_CALLBACK_0(GameScene::SetTower3, this));
+	MenuItemImage* setTower4 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
+		CC_CALLBACK_0(GameScene::SetTower4, this));
+	MenuItemImage* setTower5 = MenuItemImage::create("SetPoint.png", "SetPoint.png",
+		CC_CALLBACK_0(GameScene::SetTower5, this));
+	setTower1->setPosition(290, 330);
+	setTower2->setPosition(390, 510);
+	setTower3->setPosition(450, 250);
+	setTower4->setPosition(780, 250);
+	setTower5->setPosition(780, 510);
+	Menu * BuildTower = Menu::create(setTower1, setTower2, setTower3, setTower4,setTower5,NULL);
+	BuildTower->setPosition(0,0);
+	this->addChild(BuildTower,1);
 	
 	//开始按钮
 	MenuItemImage * startmenu = MenuItemImage::create("start1.png", "start2.png", 
@@ -85,41 +91,36 @@ bool GameScene::init() {
 
 
 
-//void GameScene::SetTower1() {
-//	ArcherTowerLv1 * tt = new ArcherTowerLv1;
-//	tt->initTower();
-//	tt->getEnemyArray(EnemyArray);
-//	tt->setPosition(290,358);
-//	this->addChild(tt, 2);
-//}
-//void GameScene::SetTower2() {
-//	ArcherTowerLv1 * tt = new ArcherTowerLv1;
-//	tt->initTower();
-//	tt->getEnemyArray(EnemyArray);
-//	tt->setPosition(390, 538);
-//	this->addChild(tt, 2);
-//}
-//void GameScene::SetTower3() {
-//	ArcherTowerLv1 * tt = new ArcherTowerLv1;
-//	tt->initTower();
-//	tt->getEnemyArray(EnemyArray);
-//	tt->setPosition(450, 278);
-//	this->addChild(tt, 2);
-//}
-//void GameScene::SetTower4() {
-//	ArcherTowerLv1 * tt = new ArcherTowerLv1;
-//	tt->initTower();
-//	tt->getEnemyArray(EnemyArray);
-//	tt->setPosition(780, 278);
-//	this->addChild(tt, 2);
-//}
-//void GameScene::SetTower5() {
-//	ArcherTowerLv1 * tt = new ArcherTowerLv1;
-//	tt->initTower();
-//	tt->getEnemyArray(EnemyArray);
-//	tt->setPosition(780, 538);
-//	this->addChild(tt, 2);
-//}
+void GameScene::SetTower1() {
+	ArcherTowerLv1 * tt = new ArcherTowerLv1;
+	tt->initTower();
+	tt->setPosition(290,358);
+	this->addChild(tt, 2,100);
+}
+void GameScene::SetTower2() {
+	ArcherTowerLv1 * tt = new ArcherTowerLv1;
+	tt->initTower();
+	tt->setPosition(390, 538);
+	this->addChild(tt, 2,200);
+}
+void GameScene::SetTower3() {
+	ArcherTowerLv1 * tt = new ArcherTowerLv1;
+	tt->initTower();
+	tt->setPosition(450, 278);
+	this->addChild(tt, 2,300);
+}
+void GameScene::SetTower4() {
+	ArcherTowerLv1 * tt = new ArcherTowerLv1;
+	tt->initTower();
+	tt->setPosition(780, 278);
+	this->addChild(tt, 2,400);
+}
+void GameScene::SetTower5() {
+	ArcherTowerLv1 * tt = new ArcherTowerLv1;
+	tt->initTower();
+	tt->setPosition(780, 538);
+	this->addChild(tt, 2,500);
+}
 
 void GameScene::menustartCallback(Ref * pSender)
 {
@@ -151,9 +152,9 @@ void GameScene::updatenumbat(float dt)
 	this->addChild(bat, 1, tagbat);
 	bat->createEnemybat();
 	for (b; b < 100; b++) {
-		if (EnemyArray[b] == 0)
+		if (Enemies[b] == 0)
 		{
-			EnemyArray[b] = tagbat;
+			Enemies[b] = tagbat;
 			break;
 		}
 	}
@@ -167,9 +168,9 @@ void GameScene::updatenumtree(float dt)
 	this->addChild(tree, 1, tagtree);
 	tree->createEnemytree();
 	for (int b = 0; b < 100; b++) {
-		if (EnemyArray[b] == 0)
+		if (Enemies[b] == 0)
 		{
-			EnemyArray[b] = tagtree;
+			Enemies[b] = tagtree;
 			break;
 		}
 	}
@@ -183,9 +184,9 @@ void GameScene::updatenumspider(float dt)
 	this->addChild(spider, 1, tagspider);
 	spider->createEnemyspider();
 	for (int b = 0; b < 100; b++) {
-		if (EnemyArray[b] == 0)
+		if (Enemies[b] == 0)
 		{
-			EnemyArray[b] = tagspider;
+			Enemies[b] = tagspider;
 			break;
 		}
 	}

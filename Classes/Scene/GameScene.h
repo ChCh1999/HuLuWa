@@ -7,6 +7,8 @@
 #include"Enemyspider.h"
 #include"Enemytree.h"
 #include<math.h>
+
+
 class GameScene: public cocos2d::Scene
 {
 public:
@@ -20,12 +22,13 @@ public:
 	int b = 0;
 	int bo = 2;
 	void menustartCallback(Ref * pSender);
+
 	void SetTower1();
 	void SetTower2();
 	void SetTower3();
 	void SetTower4();
 	void SetTower5();
-	int EnemyArray[100];
+	int Enemies[100];
 	int numbat = 15;
 	int numtree = 20;
 	int numspider = 15;

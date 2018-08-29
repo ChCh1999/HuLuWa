@@ -50,7 +50,7 @@ void Enemybat::leftmove()
 		SpriteFrame *spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(frameName->getCString());
 		animation->addSpriteFrame(spriteFrame);
 	}
-
+	Vec2 mytry =this->getPosition();
 	animation->setDelayPerUnit(0.15f);           //设置两个帧播放时间
 	animation->setRestoreOriginalFrame(true);    //动画执行后还原初始状态
 
